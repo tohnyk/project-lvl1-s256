@@ -1,29 +1,30 @@
 import readlineSync from 'readline-sync';
 
-console.log('Welcome to the Brain Games!'); // eslint-disable-line no-console
+console.log('Welcome to the Brain Games!');
 console.log('Answer "yes" if the number is even, otherwise answer "no".\n');
 const userName = readlineSync.question('May I have your name? ');
 
-export const randomInt = (min, max) => Math.floor(min + (Math.random() * ((max - min) + 1)));
-// random integer generator
+export const randomInt = (min = 1, max = 100) =>
+  Math.floor(min + (Math.random() * ((max - min) + 1)));
+// random integer generator from 1 to 100
 
-export const questionCount = 3; // number of questions
+const questionCount = 3; // number of questions
 
-export const isEven = (counter, n) => {
+export const evenGame = (counter = questionCount, n = randomInt()) => {
   if (counter === 0) return console.log(`Congratulations, ${userName}!`);
 
   console.log(`Question: ${n}`);
   const userAnswer = readlineSync.question('Your answer: ');
 
-  const even = (n % 2 === 0);
-  const correctAnswer = (even && userAnswer === 'yes') || (!even && userAnswer === 'no');
+  const isEven = (n % 2 === 0);
+  const correctAnswer = (isEven && userAnswer === 'yes') || (!isEven && userAnswer === 'no');
 
   if (correctAnswer) {
     console.log('Correct!');
-    return isEven(counter - 1, randomInt(1, 100));
+    return evenGame(counter - 1, randomInt());
   }
 
-  return console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${even ? 'yes' : 'no'}'.
+  return console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${isEven ? 'yes' : 'no'}'.
 Let's try again, ${userName}!`);
 };
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import userName, { isEven, randomInt, questionCount } from '..';
+import userName, { evenGame } from '..';
 
-console.log(`Hello, ${userName}!\n`); // eslint-disable-line no-console
+console.log(`Hello, ${userName}!\n`);
 
-isEven(questionCount, randomInt(1, 100));
+evenGame();
 
