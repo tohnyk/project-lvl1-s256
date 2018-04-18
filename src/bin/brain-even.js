@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-import userName, { evenGame } from '..';
+import startEven from '../games/even';
 
-console.log(`Hello, ${userName}!\n`);
-
-evenGame();
+startEven();
 

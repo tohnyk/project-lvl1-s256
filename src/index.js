@@ -1,31 +1,44 @@
 import readlineSync from 'readline-sync';
-
-console.log('Welcome to the Brain Games!');
-console.log('Answer "yes" if the number is even, otherwise answer "no".\n');
-const userName = readlineSync.question('May I have your name? ');
+import { car, cdr } from 'hexlet-pairs';
+import { greeting } from './games/even';
 
 export const randomInt = (min = 1, max = 100) =>
   Math.floor(min + (Math.random() * ((max - min) + 1)));
 // random integer generator from 1 to 100
 
-const questionCount = 3; // number of questions
+export const questionsQuantity = 3; // number of questions
 
-export const evenGame = (counter = questionCount, n = randomInt()) => {
-  if (counter === 0) return console.log(`Congratulations, ${userName}!`);
+const gameEngine = (counter, gameContent) => { // input & output comparison
+  if (counter === 0) return true; // call line 40 if a game successfully ends
 
-  console.log(`Question: ${n}`);
+  const gamePair = gameContent(); // game pair abstraction = question + answer
+  const gameQuestion = car(gamePair);
+  const correctAnswer = cdr(gamePair);
+
+
+  console.log(`Question: ${gameQuestion}`);
   const userAnswer = readlineSync.question('Your answer: ');
 
-  const isEven = (n % 2 === 0);
-  const correctAnswer = (isEven && userAnswer === 'yes') || (!isEven && userAnswer === 'no');
 
-  if (correctAnswer) {
+  if (userAnswer === correctAnswer) {
     console.log('Correct!');
-    return evenGame(counter - 1, randomInt());
+    return gameEngine(counter - 1, gameContent);
   }
-
-  return console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${isEven ? 'yes' : 'no'}'.
-Let's try again, ${userName}!`);
+  console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
+  return false;
 };
 
-export default userName;
+
+export const gameSession = (gameContent) => { // starts game session
+  console.log('Welcome to the Brain Games!');
+  console.log(greeting);
+  const userName = readlineSync.question('\nMay I have your name? ');
+  console.log(`Hello, ${userName}!\n`);
+
+  const playGame = gameEngine(questionsQuantity, gameContent); // starts the game engine
+
+  if (playGame) { // asserts 3 correct answers or not
+    console.log(`Congratulations, ${userName}!`);
+  } else console.log(`Let's try again, ${userName}!`);
+};
+
