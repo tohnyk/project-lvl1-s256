@@ -1,6 +1,6 @@
 {
   "name": "tonykonst-brain-games",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "package for hexlet.io brain-games project",
   "main": "index.js",
   "bin": {
