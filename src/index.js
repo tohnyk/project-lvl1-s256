@@ -1,15 +1,14 @@
 import readlineSync from 'readline-sync';
 import { car, cdr } from 'hexlet-pairs';
-import { greeting } from './games/even';
 
 export const randomInt = (min = 1, max = 100) =>
   Math.floor(min + (Math.random() * ((max - min) + 1)));
 // random integer generator from 1 to 100
 
-export const questionsQuantity = 3; // number of questions
+const questionsQuantity = 3; // number of questions
 
 const gameEngine = (counter, gameContent) => { // input & output comparison
-  if (counter === 0) return true; // call line 40 if a game successfully ends
+  if (counter === 0) return true; // call line 41 if a game successfully ends
 
   const gamePair = gameContent(); // game pair abstraction = question + answer
   const gameQuestion = car(gamePair);
@@ -29,9 +28,9 @@ const gameEngine = (counter, gameContent) => { // input & output comparison
 };
 
 
-export const gameSession = (gameContent) => { // starts game session
+export const gameSession = (instruction, gameContent) => { // starts game session
   console.log('Welcome to the Brain Games!');
-  console.log(greeting);
+  console.log(instruction);
   const userName = readlineSync.question('\nMay I have your name? ');
   console.log(`Hello, ${userName}!\n`);
 
