@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import userName from '..';
+import startBrain from '../games/brain';
 
-console.log(`Hello, ${userName}!`); // eslint-disable-line no-console
+startBrain();
