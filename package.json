@@ -1,12 +1,13 @@
 {
   "name": "tonykonst-brain-games",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "package for hexlet.io brain-games project",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
     "brain-even": "dist/bin/brain-even.js",
-    "brain-calc": "dist/bin/brain-calc.js"
+    "brain-calc": "dist/bin/brain-calc.js",
+    "brain-gcd": "dist/bin/brain-gcd.js"
   },
   "files": [
     "dist"
