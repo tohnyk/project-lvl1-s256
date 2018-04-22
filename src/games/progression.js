@@ -3,16 +3,20 @@ import { randomInt, gameSession } from '..';
 
 const instruction = 'What number is missing in this progression?';
 
+const progressionMember = (startNum, step, memberNum) => startNum + (step * (memberNum - 1));
+
 const makeProgression = (startNum, step, length, hiddenStep) => {
   const iter = (counter, acc, hiddenNum) => {
+    const progressionNum = progressionMember(startNum, step, counter);
+
     if (counter > length) return cons(acc, hiddenNum);
     // makes basic pair: acc = gameQuestion, hiddenNum = correctAnswer
 
     if (counter === hiddenStep) {
-      return iter(counter + 1, `${acc} ..`, `${startNum + (step * (counter - 1))}`);
+      return iter(counter + 1, `${acc} ..`, `${progressionNum}`);
     }
 
-    return iter(counter + 1, `${acc} ${startNum + (step * (counter - 1))}`, hiddenNum);
+    return iter(counter + 1, `${acc} ${progressionNum}`, hiddenNum);
   };
   return iter(1, '', 0);
 };
