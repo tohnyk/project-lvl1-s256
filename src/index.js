@@ -8,7 +8,7 @@ export const randomInt = (min = 1, max = 100) =>
 const questionsQuantity = 3; // number of questions
 
 const gameEngine = (counter, gameContent) => { // input & output comparison
-  if (counter === 0) return true; // call line 41 if a game successfully ends
+  if (counter === 0) return true; // call line 40 if a game successfully ends
 
   const gamePair = gameContent(); // game pair abstraction = question + answer
   const gameQuestion = car(gamePair);

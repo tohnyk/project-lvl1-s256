@@ -3,15 +3,15 @@ import { randomInt, gameSession } from '..';
 
 const instruction = 'Find the greatest common divisor of given numbers.';
 
-const calculateGcd = (num1, num2) => {
+const calculateGcd = (num1, num2) => { // euklidus algorithm
+  if (num2 % num1 === 0) return num1;
+  if (num1 % num2 === 0) return num2;
+
   const iter = (counter, acc) => {
-    if ((counter > num1) || (counter > num2)) return acc;
-    if ((num1 % counter === 0) && (num2 % counter === 0)) {
-      return iter(counter + 1, counter);
-    }
-    return iter(counter + 1, acc);
+    if (counter === 0) return acc;
+    return iter(acc % counter, counter);
   };
-  return iter(1, 1);
+  return num1 > num2 ? iter(num1 % num2, num2) : iter(num2 % num1, num1);
 };
 
 const gcdGame = () => {
