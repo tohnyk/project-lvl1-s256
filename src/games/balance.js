@@ -6,13 +6,14 @@ const instruction = 'Balance the given number.';
 const isBalanced = (n) => {
   const iter = (counter, acc) => {
     if (acc > 1) return false;
+    if (counter === String(n).length - 1) return true;
     if (Number(String(n)[counter] - String(n)[counter + 1]) > 1
     || Number(String(n)[counter] - String(n)[counter + 1]) < 0) return false;
 
     if (Number(String(n)[counter] - String(n)[counter + 1]) === 1) {
       return iter(counter + 1, acc + 1);
     }
-    return true;
+    return iter(counter + 1, acc);
   };
   return iter(0, 0);
 };
